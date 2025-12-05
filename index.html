@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>College Party Night – Join the Vibe!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ff8a00 0%, #ff2d55 30%, #1d0033 90%);
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden;
+       background: url("legcy.jpg") center/cover no-repeat fixed;
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+    }
+.bg-logo {
+  position: absolute;
+  top: 0%;        /* adjust vertical position */
+  left: 50%;      /* center horizontally */
+  transform: translate(-50%, -30%);
+
+  width: 1000px;   /* make it bigger */
+  height: auto;   /* maintain aspect ratio */
+  opacity: 1;  /* subtle background feel */
+  pointer-events: none;
+  z-index: 1;     /* behind the card */
+}
+    /* Animated gradient overlay */
+    .gradient-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: glowMove 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowMove {
+      0%   { transform: translate3d(-5%, -5%, 0) scale(1); }
+      50%  { transform: translate3d(5%, 5%, 0) scale(1.05); }
+      100% { transform: translate3d(-3%, 3%, 0) scale(1.02); }
+    }
+
+    /* Floating shapes (motion graphics) */
+    .bubble {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      animation: floatUp 18s linear infinite;
+    }
+
+    .bubble:nth-child(1) {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle at 30% 30%, #ffdd59, #ff3f34);
+      bottom: -220px;
+      left: 5%;
+      animation-duration: 22s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at 20% 20%, #0be881, #1e90ff);
+      bottom: -150px;
+      left: 55%;
+      animation-duration: 18s;
+      animation-delay: -4s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle at 40% 40%, #ff5e57, #9b59b6);
+      bottom: -280px;
+      right: -40px;
+      animation-duration: 26s;
+      animation-delay: -9s;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(1); opacity: 0; }
+      10%  { opacity: 0.7; }
+      80%  { opacity: 0.7; }
+      100% { transform: translateY(-120vh) scale(1.15); opacity: 0; }
+    }
+
+    .page {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      max-width: 900px;
+      width: 100%;
+      background: rgba(8, 8, 20, 0.75);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.6),
+        0 0 80px rgba(255, 46, 104, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .card {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fadeSlideDown 1.4s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffdd59;
+      box-shadow: 0 0 10px #ffdd59;
+    }
+
+    @keyframes fadeSlideDown {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 22px rgba(0, 0, 0, 0.9);
+      animation: popIn 1.3s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+      opacity: 0;
+      transform: scale(0.95) translateY(8px);
+    }
+
+    h1 span.highlight {
+      background: linear-gradient(120deg, #ffdd59, #ff6b81, #18dcff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.9) translateY(20px); }
+      60%  { opacity: 1; transform: scale(1.03) translateY(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 26rem;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 1.3rem;
+      animation: fadeUp 1.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 1.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .pill {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+    }
+
+    .pill.hot {
+      border-color: #ffdd59;
+      background: rgba(255, 221, 89, 0.1);
+      box-shadow: 0 0 20px rgba(255, 221, 89, 0.5);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      animation: fadeUp 2s ease-out forwards;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .btn-primary {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      overflow: hidden;
+      background-image: linear-gradient(120deg, #ff3f34, #ff9f1a);
+      color: #0b0414;
+      box-shadow:
+        0 0 24px rgba(255, 99, 71, 0.9),
+        0 0 40px rgba(255, 165, 0, 0.7);
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.35s ease-out;
+    }
+
+    .btn-primary:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 35px rgba(255, 99, 71, 1),
+        0 0 55px rgba(255, 165, 0, 0.9);
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary span::after {
+      content: "→";
+      font-size: 1rem;
+      transition: transform 0.18s ease-out;
+    }
+
+    .btn-primary:hover span::after {
+      transform: translateX(3px);
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .headline-badge {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .event-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 1.3rem 1.4rem;
+      background: radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.16), rgba(10, 3, 30, 0.8));
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 80%;
+      top: -40%;
+      left: -10%;
+      background-image:
+        repeating-linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.1) 0,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px,
+          transparent 7px
+        );
+      opacity: 0.5;
+      transform: translateX(-10%);
+      animation: moveLines 14s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes moveLines {
+      0% { transform: translateX(-10%); }
+      100% { transform: translateX(10%); }
+    }
+
+    .event-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-info {
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.8rem;
+    }
+
+    .event-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .event-tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(12, 5, 28, 0.75);
+    }
+
+    .subscribe-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .subscribe-box label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .form-row input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      padding: 0.75rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(11, 6, 30, 0.9);
+      color: #ffffff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out, background 0.16s ease-out;
+    }
+
+    .form-row input[type="email"]::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-row input[type="email"]:focus {
+      border-color: #ffdd59;
+      background: rgba(11, 6, 30, 1);
+      box-shadow: 0 0 18px rgba(255, 221, 89, 0.7);
+    }
+
+    .btn-ghost {
+      padding: 0.75rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s ease-out, transform 0.18s ease-out, box-shadow 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+
+    .footnote {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+
+<script>
+  // رابط المشروع والمفتاح الخاص (public anon key)
+  const SUPABASE_URL = "https://fkwtxnfdaxxjheyhtxhm.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrd3R4bmZkYXh4amhleWh0eGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3MDY5MjgsImV4cCI6MjA3OTI4MjkyOH0.rTu9iwt_sx1mrLVbfSO2jpuqpwL49WG_Aj5Iw2j8fTc";
+
+  const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+</script>
+
+<body>
+  <!-- Motion graphics background -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="gradient-overlay"></div>
+
+  <main class="page">
+      <img src="logo.png" alt="Party Logo" class="bg-logo" />
+
+    <section class="card">
+      <!-- Left: main hero text -->
+      <div>
+        <div class="tagline">
+          <span class="tag-dot"></span>
+          Official College Party List
+        </div>
+        <h1>
+          Turn your <span class="highlight">college night</span> into an unforgettable party.
+        </h1>
+        <p class="subtitle">
+          Sign up now to get early access to tickets, secret locations, and VIP-only surprises.
+          Limited spots. Maximum energy.
+        </p>
+
+        <div class="highlights">
+          <span class="pill hot">LeGasy is HERE 🔥</span>
+          <span class="pill">Live DJ + Light Show</span>
+          <span class="pill">*</span>
+        </div>
+
+        <div class="cta-row">
+          
+          <button class="btn-primary" type="button" onclick="location.href='registration.html'">
+  <span>Subscribe to the Party List</span>
+</button>
+
+          <span class="note">No spam. Only pure party alerts.</span>
+        </div>
+      </div>
+
+      <!-- Right: event preview + email form -->
+      <div class="right-column">
+        <div class="headline-badge">Next Drop</div>
+
+        <div class="event-card">
+          <div class="event-title">Midnight Neon Bash</div>
+          <div class="event-info">
+           · Friday · 10 PM – 3 AM <br />
+           سجل دلوقتي
+          </div>
+          <div class="event-tags">
+            <span class="event-tag">لي جي سي </span>
+            <span class="event-tag"></span>
+          </div>
+          
+        </div>
+
+        <form class="subscribe-box">
+          <label for="email">Subscribe now</label>
+          
+          <span class="footnote">
+          يا تلحق يا متلحقش ..... خش بسرعه قبل ما التذاكر تخلص          </span>
+        </form>
+      </div>
+    </section>
+  </main>
+
+<script>
+ const form = document.querySelector('.subscribe-box');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const email = document.querySelector('#email').value.trim();
+
+  if (!email) {
+    alert("Please enter a valid email.");
+    return;
+  }
+
+  // subscribers tables
+  const { data, error } = await supabase
+    .from('subscribers')
+    .insert([
+      { email } // id و created_at Supabase Automatically
+    ]);
+
+  if (error) {  
+    console.error(error);
+    alert("حدث خطأ، حاول مرة أخرى.");
+  } else {
+    alert("تم الاشتراك بنجاح!");
+    form.reset();
+  }
+});
+</script>
+</body>
+
+
+</html>

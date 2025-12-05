@@ -1,0 +1,286 @@
+/* QR Ticket System - College Party Theme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #ff006e;
+  --secondary: #8338ec;
+  --accent: #fb5607;
+  --success: #06ffa5;
+  --error: #ff006e;
+  --dark: #1a1a2e;
+  --light: #ffffff;
+  --gray: #eaeaea;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-party: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  background: var(--gradient-party);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.header .subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.header .emoji {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid var(--gray);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(131, 56, 236, 0.1);
+}
+
+.ticket-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.ticket-option {
+  border: 3px solid var(--gray);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+
+.ticket-option:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-option.selected {
+  border-color: var(--secondary);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+.ticket-option input[type="radio"] {
+  display: none;
+}
+
+.ticket-option .ticket-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+.ticket-option .ticket-price {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.payment-method {
+  border: 3px solid var(--gray);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+
+.payment-method:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.payment-method.selected {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(251, 86, 7, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+}
+
+.payment-method input[type="radio"] {
+  display: none;
+}
+
+.payment-method .method-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.payment-method .method-name {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: var(--gradient);
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-success {
+  background: var(--gradient-success);
+  color: white;
+  box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(79, 172, 254, 0.5);
+}
+
+.btn-secondary {
+  background: var(--gray);
+  color: var(--dark);
+  margin-top: 15px;
+}
+
+.btn-secondary:hover {
+  background: #ddd;
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* QR Code Display */
+.qr-container {
+  text-align: center;
+  padding: 30px;
+}
+
+.qr-code-wrapper {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  display: inline-block;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin: 20px 0;
+}
+
+.qr-code-wrapper img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.ticket-info {
+  background: var(--gradient);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.ticket-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10
+}
